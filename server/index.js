@@ -49,10 +49,9 @@ app.get('/todos/:id', async (req, res) => {
 app.get('/todos', async (req, res) => {
   try {
     const allTodos = await pool.query('SELECT * from todolist')
-    res.json(allTodos.rows)
+    res.status(200).json(allTodos.rows)
   } catch (error) {
-    s
-    console.error(error.message)
+    console.error('error:', error.message)
   }
 })
 
