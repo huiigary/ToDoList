@@ -1,17 +1,20 @@
 import React, { useEffect, useState } from 'react'
 import {
   Table,
-  TableContainer,
   TableBody,
   TableHead,
   TableRow,
   TableCell,
-  Paper,
   Checkbox,
+  Button,
+  Modal,
+  Box,
+  TextField,
 } from '@mui/material'
-
 import './Todolist.css'
+
 const Todolist = () => {
+  const LOCAL_HOST = `http://localhost:5000`
   const [todoList, setTodoList] = useState([])
 
   useEffect(() => {
@@ -30,7 +33,12 @@ const Todolist = () => {
     console.log('task is checked', e.target.checked)
   }
 
-  const [checked, setChecked] = useState(false)
+  const deleteTodo = async (id) => {
+    // call API update backend
+    await fetch(`${LOCAL_HOST}/todos/${id}`, { method: 'DELETE' })
+    // update client with new list
+    setTodoList(todoList.filter((todo) => todo.id != id))
+  }
 
   return (
     <div>
@@ -41,7 +49,8 @@ const Todolist = () => {
           <TableRow>
             <TableCell>Task#</TableCell>
             <TableCell>Description</TableCell>
-            <TableCell>Completed?</TableCell>
+            <TableCell>Edit</TableCell>
+            <TableCell>Delete</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -51,7 +60,12 @@ const Todolist = () => {
                 <Checkbox onChange={handleCheck}></Checkbox>
               </TableCell>
               <TableCell>{todo.description}</TableCell>
-              <TableCell>{todo.iscompleted}</TableCell>
+              <TableCell>
+                <Button>Edit</Button>
+              </TableCell>
+              <TableCell>
+                <Button onClick={() => deleteTodo(todo.id)}>Delete</Button>
+              </TableCell>
             </TableRow>
           ))}
         </TableBody>
