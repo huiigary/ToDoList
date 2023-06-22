@@ -24,7 +24,6 @@ app.post('/todos', async (req, res) => {
       [description]
     )
     res.json(newTodo.rows[0]) // return the first todo in the row created(inserted)
-    console.log({ newTodo })
   } catch (error) {
     console.error(error.message)
   }
