@@ -1,0 +1,9 @@
+.container {
+  margin: 2rem;
+}
+
+.input {
+  display: 'flex';
+  justify-content: 'center';
+  align-items: 'center';
+}

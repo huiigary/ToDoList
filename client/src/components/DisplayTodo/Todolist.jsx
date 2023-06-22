@@ -11,10 +11,10 @@ import {
   Box,
   TextField,
 } from '@mui/material'
+import { LOCAL_HOST } from '../constants'
 // import './Todolist.css'
 
 const Todolist = () => {
-  const LOCAL_HOST = `http://localhost:5000`
   const [todoList, setTodoList] = useState([])
 
   useEffect(() => {
@@ -22,7 +22,7 @@ const Todolist = () => {
   }, [])
 
   const getAllTodos = async () => {
-    let response = await fetch('http://localhost:5000/todos')
+    let response = await fetch(`${LOCAL_HOST}/todos`)
     let data = await response.json()
     console.log({ data })
     setTodoList(data)
@@ -37,7 +37,9 @@ const Todolist = () => {
     // call API update backend
     await fetch(`${LOCAL_HOST}/todos/${id}`, { method: 'DELETE' })
     // update client with new list
-    setTodoList(todoList.filter((todo) => todo.id != id))
+    setTodoList(
+      todoList.filter((todo) => todo.id != id).sort((a, b) => a.id - b.id)
+    )
   }
 
   return (
@@ -47,7 +49,7 @@ const Todolist = () => {
       <Table sx={{ minWidth: 800 }} aria-label='Todo List'>
         <TableHead>
           <TableRow>
-            <TableCell>Task#</TableCell>
+            <TableCell>id</TableCell>
             <TableCell>Description</TableCell>
             <TableCell>Edit</TableCell>
             <TableCell>Delete</TableCell>
@@ -57,6 +59,7 @@ const Todolist = () => {
           {todoList.map((todo, index) => (
             <TableRow key={index}>
               <TableCell>
+                {todo.id}
                 <Checkbox onChange={handleCheck}></Checkbox>
               </TableCell>
               <TableCell>{todo.description}</TableCell>
