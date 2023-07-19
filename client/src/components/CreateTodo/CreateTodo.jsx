@@ -32,6 +32,14 @@ const CreateTodo = () => {
     setNewTodoDescription(input)
   }
 
+  const handleUserPressedEnter = async (e) => {
+    // handle user clicking enter to add new todo
+    console.log('key pressed is:', e.key)
+    if (e.key === 'Enter') {
+      await addTodo()
+    }
+  }
+
   return (
     <div className='container'>
       <h1 style={{ textAlign: 'center' }}>CreateTodo</h1>
@@ -44,6 +52,7 @@ const CreateTodo = () => {
           color='secondary'
           value={newTodoDescription}
           onChange={(e) => setTodoDescription(e.target.value)}
+          onKeyDown={(e) => handleUserPressedEnter(e)}
         ></TextField>
         {/* add button */}
         <Button onClick={addTodo} variant='contained'>
