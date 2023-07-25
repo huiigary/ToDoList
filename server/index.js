@@ -16,13 +16,14 @@ app.use(express.json())
 // create a todo
 app.post('/todos', async (req, res) => {
   try {
-    console.log(req.body)
+    console.log('create todo body:', req.body)
     const { description } = req.body
     // optional "RETURNNG *" to return info of the inserted row
     const newTodo = await pool.query(
       'INSERT INTO todolist (description) VALUES($1) RETURNING *',
       [description]
     )
+    console.log('newly created todo:', newTodo.rows[0])
     res.json(newTodo.rows[0]) // return the first todo in the row created(inserted)
   } catch (error) {
     console.error(error.message)
