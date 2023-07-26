@@ -1,6 +1,6 @@
-import { Button, TextField, Input } from '@mui/material'
+import { Button, TextField } from '@mui/material'
 import React, { useState } from 'react'
-import './CreateTodo.css'
+import '../../App.css'
 
 const CreateTodo = ({ addTodo }) => {
   const [input, setInput] = useState('') // To control the input to the todo textfield
@@ -21,14 +21,17 @@ const CreateTodo = ({ addTodo }) => {
 
   return (
     <div className='container'>
-      <h1 style={{ textAlign: 'center' }}>CreateTodo</h1>
+      <h1 style={{ textAlign: 'center' }}>Tasks for Today</h1>
       <div
-        style={{ display: 'flex', justifyContent: 'center', marginTop: '1rem' }}
+        style={{
+          display: 'flex',
+          justifyContent: 'center',
+          marginTop: '2rem',
+        }}
       >
         <TextField
-          sx={{ width: '50%' }}
+          sx={{ width: '100%', background: 'white', outline: 'none' }}
           label='Add task'
-          color='secondary'
           value={input}
           onChange={(e) => setInput(e.target.value)}
           onKeyUp={(e) => handleEnter(e, input)}

@@ -3,3 +3,39 @@
   margin: 0;
   box-sizing: border-box;
 }
+
+body {
+  background: #b09ddf;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.todoWrapper {
+  /* display:'flex'; */
+  /* flex-direction: column; */
+  background: grey;
+  margin-top: 5rem;
+  padding: 4rem;
+  border-radius: 25px;
+}
+
+.todoRow {
+  background-color: #695699;
+  color: white;
+  padding: 1rem;
+  margin: 3rem;
+  border: 1px solid black;
+  border-radius: 20px;
+  width: 100%;
+}
+
+.container {
+  margin-bottom: 5rem;
+}
+
+.input {
+  display: 'flex';
+  justify-content: 'center';
+  align-items: 'center';
+}
