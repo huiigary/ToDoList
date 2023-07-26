@@ -1,0 +1,8 @@
+.todoRow {
+  background-color: #8758ff;
+  color: white;
+  padding: 1rem;
+  border: 1rem solid black;
+  /* margin-bottom: 2rem; */
+  /* cursor: pointer; */
+}

@@ -5,7 +5,13 @@ import EditIcon from '@mui/icons-material/Edit'
 import './Todo.css'
 
 // To display todo with: the todo description, edit, delete, complete
-export const Todo = ({ todo, toggleEdit, deleteTodo }) => {
+export const EditTodo = ({ todo, editTodo, toggleEdit }) => {
+  const handleEnter = async (todo, e) => {
+    if (e.key === 'Enter') {
+      await editTodo(todo, e.target.value)
+      toggleEdit(todo)
+    }
+  }
   return (
     <Grid
       container
@@ -15,16 +21,20 @@ export const Todo = ({ todo, toggleEdit, deleteTodo }) => {
       className='todoRow'
     >
       {/* todo description. Can edit on click */}
-      <Grid item>{todo.id}</Grid>
-      <Grid item>{todo?.description || 'N/A'}</Grid>
+      <Grid item>EDIT{todo.id}</Grid>
+      <TextField
+        value={todo.description}
+        onChange={(e) => editTodo(todo, e.target.value)}
+        onKeyUp={(e) => handleEnter(todo, e)}
+      />
       {/* edit button  */}
       <Grid item onClick={() => toggleEdit(todo)}>
         <EditIcon />
       </Grid>
       {/* delete button */}
-      <Grid item onClick={() => deleteTodo(todo.id)}>
+      {/* <Grid item onClick={() => deleteTodo(todo.id)}>
         <DeleteIcon />
-      </Grid>
+      </Grid> */}
     </Grid>
   )
 }

@@ -3,6 +3,7 @@ import Todolist from './DisplayTodo/Todolist'
 import CreateTodo from './CreateTodo/CreateTodo'
 import { LOCAL_HOST } from './constants'
 import { Todo } from './DisplayTodo/Todo'
+import { EditTodo } from './DisplayTodo/EditTodo'
 
 export const TodoWrapper = () => {
   const [todoList, setTodoList] = useState([]) // list of todos
@@ -16,7 +17,7 @@ export const TodoWrapper = () => {
     let response = await fetch(`${LOCAL_HOST}/todos`)
     let data = await response.json()
     data.sort((a, b) => a.id - b.id) // sort todos by increasing id (fixes issue where edits change the ordering of list displayed)
-    console.log({ data })
+    console.log('getalltodos', { data })
     setTodoList(data)
     return data
   }
@@ -49,10 +50,28 @@ export const TodoWrapper = () => {
     }
   }
 
+  const toggleEdit = async (todo) => {
+    // local toggle edit flag: find todo from list and change the isEditing flag
+    console.log('editing', todo.isediting)
+    setTodoList(
+      todoList.map((todoElement) =>
+        todoElement.id === todo.id
+          ? { ...todo, isediting: !todo.isediting }
+          : todoElement
+      )
+    )
+  }
+
   const editTodo = async (todo, newTodoDescription) => {
-    // local update
-    todo.description = newTodoDescription
-    // backend update
+    // local update todo's description with new description in todolist
+    setTodoList(
+      todoList.map((todoElement) =>
+        todoElement.id === todo.id
+          ? { ...todoElement, description: newTodoDescription }
+          : todoElement
+      )
+    )
+    // // backend update
     await fetch(`${LOCAL_HOST}/todos/${todo.id}`, {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
@@ -75,14 +94,25 @@ export const TodoWrapper = () => {
       <CreateTodo addTodo={addTodo} />
       {/* display list of todos */}
       {todoList.length > 0 &&
-        todoList.map((todo, index) => (
-          <Todo
-            key={index}
-            todo={todo}
-            editTodo={editTodo}
-            deleteTodo={deleteTodo}
-          />
-        ))}
+        todoList.map((todo, index) =>
+          todo.isediting ? (
+            <EditTodo
+              key={index}
+              todo={todo}
+              editTodo={editTodo}
+              toggleEdit={toggleEdit}
+
+              // deleteTodo={deleteTodo}
+            />
+          ) : (
+            <Todo
+              key={index}
+              todo={todo}
+              toggleEdit={toggleEdit}
+              deleteTodo={deleteTodo}
+            />
+          )
+        )}
     </div>
   )
 }
