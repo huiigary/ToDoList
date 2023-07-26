@@ -1,5 +1,8 @@
 # ToDoList
-Simple todo list with PERN stack
+Simple todo list with PERN stack [WORK IN PROGRESS]
+- For now, it has the simple functionality of creating, editing, completing, and deleting tasks.
+  
+
 
 
 ## Stack
