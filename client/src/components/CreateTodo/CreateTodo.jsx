@@ -20,7 +20,7 @@ const CreateTodo = ({ addTodo }) => {
   }
 
   return (
-    <div className='container'>
+    <div className='createTodoContainer'>
       <h1 style={{ textAlign: 'center' }}>Tasks for Today</h1>
       <div
         style={{
@@ -30,7 +30,12 @@ const CreateTodo = ({ addTodo }) => {
         }}
       >
         <TextField
-          sx={{ width: '100%', background: 'white', outline: 'none' }}
+          sx={{
+            width: '100%',
+            background: 'white',
+            outline: 'none',
+            borderColor: 'red',
+          }}
           label='Add task'
           value={input}
           onChange={(e) => setInput(e.target.value)}

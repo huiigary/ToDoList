@@ -1,3 +1,9 @@
+:root {
+  --body: rgb(23, 26, 29);
+  --listBackground: rgb(230, 226, 226);
+  --rowColor: rgb(119, 168, 213);
+}
+
 * {
   padding: 0;
   margin: 0;
@@ -5,37 +11,30 @@
 }
 
 body {
-  background: #b09ddf;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  background: var(--body);
 }
 
 .todoWrapper {
-  /* display:'flex'; */
-  /* flex-direction: column; */
-  background: grey;
-  margin-top: 5rem;
-  padding: 4rem;
+  background: var(--listBackground);
+  width: 50%;
+  height: 20%;
   border-radius: 25px;
+  border: 3px solid black;
+  padding: 4rem;
+  margin-top: 5rem;
+  margin-bottom: 5rem;
 }
 
 .todoRow {
-  background-color: #695699;
-  color: white;
+  background-color: var(--rowColor);
+  color: black;
+  font-size: large;
   padding: 1rem;
   margin: 3rem;
   border: 1px solid black;
   border-radius: 20px;
-  width: 100%;
 }
 
-.container {
+.createTodoContainer {
   margin-bottom: 5rem;
-}
-
-.input {
-  display: 'flex';
-  justify-content: 'center';
-  align-items: 'center';
 }

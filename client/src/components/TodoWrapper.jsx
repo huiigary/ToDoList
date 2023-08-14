@@ -48,8 +48,8 @@ export const TodoWrapper = () => {
     }
   }
 
+  // local toggle edit flag: find todo from list and change the isEditing flag
   const toggleEdit = async (todo) => {
-    // local toggle edit flag: find todo from list and change the isEditing flag
     console.log('editing', todo.isediting)
     setTodoList(
       todoList.map((todoElement) =>
@@ -60,8 +60,8 @@ export const TodoWrapper = () => {
     )
   }
 
+  // local update todo's description with new description in todolist
   const editTodo = async (todo, newTodoDescription) => {
-    // local update todo's description with new description in todolist
     setTodoList(
       todoList.map((todoElement) =>
         todoElement.id === todo.id

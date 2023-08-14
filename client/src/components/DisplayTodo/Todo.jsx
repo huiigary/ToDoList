@@ -27,15 +27,16 @@ export const Todo = ({
       style={{
         textDecoration: todo.iscompleted ? 'line-through' : null,
         background: todo.iscompleted ? 'grey' : null,
-        bor: todo.iscompleted ? 'grey' : null,
       }}
       id='table'
     >
       {/* todo description. Can edit on click */}
-
       {todo.isediting ? (
         <>
           <TextField
+            size='large'
+            variant='outlined'
+            width={200}
             value={todo.description}
             onChange={(e) => editTodo(todo, e.target.value)}
             onKeyUp={(e) => handleEnter(todo, e)}
