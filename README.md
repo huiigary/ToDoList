@@ -21,13 +21,13 @@ Front-End
 ## What the app can do
 
 #### Adding tasks
-![Adding a task](https://github.com/huiigary/ToDoList/tree/master/docs/add.gif)
+![Adding a task](https://github.com/huiigary/ToDoList/blob/master/docs/add.gif)
 #### Editing tasks
-![Editing a task](https://github.com/huiigary/ToDoList/tree/master/docs/edit.gif)
+![Editing a task](https://github.com/huiigary/ToDoList/blob/master/docs/edit.gif)
 #### Completing tasks
-![Completing a task](https://github.com/huiigary/ToDoList/tree/master/docs/complete.gif)
+![Completing a task](https://github.com/huiigary/ToDoList/blob/master/docs/complete.gif)
 #### Deleting tasks
-![Deleting a task](https://github.com/huiigary/ToDoList/tree/master/docs/delete.gif)
+![Deleting a task](https://github.com/huiigary/ToDoList/blob/master/docs/delete.gif)
 
 
 
