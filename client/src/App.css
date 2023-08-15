@@ -1,7 +1,8 @@
 :root {
   --body: rgb(23, 26, 29);
   --listBackground: rgb(230, 226, 226);
-  --rowColor: rgb(119, 168, 213);
+  --rowColor: rgb(182, 199, 213);
+  /* --rowColor: rgb(119, 168, 213); */
 }
 
 * {

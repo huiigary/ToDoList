@@ -1,5 +1,5 @@
 import { Grid, Checkbox, TextField } from '@mui/material'
-import React, { useState } from 'react'
+import React from 'react'
 import DeleteIcon from '@mui/icons-material/Delete'
 import EditIcon from '@mui/icons-material/Edit'
 
@@ -17,50 +17,84 @@ export const Todo = ({
       toggleEdit(todo)
     }
   }
+
+  const createdDate = todo.creation_time
+    ? new Date(todo.creation_time).toDateString()
+    : null
+
   return (
     <Grid
-      container
-      spacing={2}
-      justifyContent={'space-between'}
       alignItems={'center'}
       className={'todoRow'}
       style={{
+        display: 'flex',
         textDecoration: todo.iscompleted ? 'line-through' : null,
         background: todo.iscompleted ? 'grey' : null,
       }}
       id='table'
     >
-      {/* todo description. Can edit on click */}
-      {todo.isediting ? (
-        <>
-          <TextField
-            size='large'
-            variant='outlined'
-            width={200}
-            value={todo.description}
-            onChange={(e) => editTodo(todo, e.target.value)}
-            onKeyUp={(e) => handleEnter(todo, e)}
-          />
-        </>
-      ) : (
-        <>
-          <Checkbox
-            checked={todo.iscompleted}
-            onClick={() => toggleComplete(todo)}
-          ></Checkbox>
-          <Grid item sx={{ width: 'auto' }}>
-            {todo?.description || 'N/A'}
+      <Grid
+        container
+        alignItems={'center'}
+        xs={8}
+        sx={{ overflowWrap: 'break-word' }}
+      >
+        {/* todo description. Can edit on click */}
+        {todo.isediting ? (
+          <Grid item width={'100%'}>
+            <TextField
+              fullWidth
+              size='large'
+              variant='outlined'
+              value={todo.description}
+              onChange={(e) => editTodo(todo, e.target.value)}
+              onKeyUp={(e) => handleEnter(todo, e)}
+            />
           </Grid>
-        </>
-      )}
+        ) : (
+          // checkbox and todo description
+          <Grid item sx={{ display: 'flex' }}>
+            <Checkbox
+              checked={todo.iscompleted}
+              onClick={() => toggleComplete(todo)}
+            ></Checkbox>
 
-      {/* edit button  */}
-      <Grid item sx={{ display: 'flex', marginLeft: 20 }}>
-        <Grid item sx={{ paddingRight: 2 }} onClick={() => toggleEdit(todo)}>
+            <Grid
+              item
+              width={'100%'}
+              sx={{
+                overflowWrap: 'anywhere',
+              }}
+            >
+              {todo?.description || 'N/A'}
+              <div>
+                <h5>{createdDate}</h5>
+              </div>
+            </Grid>
+          </Grid>
+        )}
+      </Grid>
+
+      <Grid
+        container
+        alignItems={'center'}
+        justifyContent={'flex-end'}
+        // backgroundColor='yellow'
+      >
+        {/* edit button  */}
+        <Grid
+          item
+          sx={{ paddingRight: 2, cursor: 'pointer' }}
+          onClick={() => toggleEdit(todo)}
+        >
           <EditIcon />
         </Grid>
         {/* delete button */}
-        <Grid item sx={{ paddingLeft: 2 }} onClick={() => deleteTodo(todo.id)}>
+        <Grid
+          item
+          sx={{ paddingLeft: 2, cursor: 'pointer' }}
+          onClick={() => deleteTodo(todo.id)}
+        >
           <DeleteIcon />
         </Grid>
       </Grid>
